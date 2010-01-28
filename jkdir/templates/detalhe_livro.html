@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Livro - {{ livro }}{% endblock %}
+
+{% block container %}
+
+	<h1>{{ livro }}</h1>
+	
+	<table border="1" cellspacing="0" cellpadding="3">
+		<tr>
+			<td><b>Título</b></td>
+			<td>{{ livro.titulo }}</td>
+		</tr>
+		<tr>
+			<td><b>Autor</b></td>
+			<td>{{ livro.autor }}</td>
+		</tr>
+		<tr>
+			<td><b>Descrição</b></td>
+			<td>{{ livro.descricao }}</td>
+		</tr>
+		<tr>
+			<td><b>ISBN</b></td>
+			<td>{{ livro.isbn }}</td>
+		</tr>
+		<tr>
+			<td><b>Link</b></td>
+			<td><a href="{{ livro.link }}">{{ livro.link }}</a></td>
+		</tr>
+		<tr>
+			<td><b>Dono</b></td>
+			<td><a href="{{ livro.dono.get_absolute_url }}">{{ livro.dono }}</a></td>
+		</tr>
+		<tr>
+			<td><b>Categorias</b></td>
+			<td>{% for categoria in livro.categorias.all %}<a href="{{ categoria.get_absolute_url }}">{{ categoria }}</a> {% endfor %}</td>
+		</tr>
+	</table>
+	
+{% endblock %}

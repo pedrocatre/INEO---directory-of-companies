@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Empresas{% endblock %}
+
+{% block container %}
+	
+	<h1>Empresas</h1>
+	
+	<ul>
+	{% for empresa in empresas %}
+		<li><a href="{{ empresa.get_absolute_url }}">{{ empresa }}</a></li>
+	{% endfor %}
+	</ul>
+	
+{% endblock %}

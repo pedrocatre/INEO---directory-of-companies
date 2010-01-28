@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Página principal{% endblock %}
+
+{% block container %}
+	
+	
+	<h1>Utilizadores recentes</h1>
+	<form action = "change" method="POST">
+		Campo: <input type="text" name="ccc"/><br/>
+		<input type="SUBMIT" value="Change"/>
+	</form>
+	<ul>
+	{% for user in users %}
+		<li><a href="{{ user.get_absolute_url }}">{% firstof user.get_full_name user.username %}</a></li>
+	{% endfor %}
+	</ul>	
+{% endblock %}

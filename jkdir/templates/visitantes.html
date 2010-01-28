@@ -1,0 +1,15 @@
+<html>
+
+<body>
+<h1>Empresas</h1>
+	
+	<ul>
+	{% for empresa in empresas %}
+		<li><a href="{{ empresa.get_absolute_url }}">{{ empresa }}</a></li>
+	{% endfor %}
+	</ul>
+
+
+</body>
+
+</html>

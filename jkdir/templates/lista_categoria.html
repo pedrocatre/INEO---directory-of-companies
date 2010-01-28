@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Categorias{% endblock %}
+
+{% block container %}
+	
+	<h1>Categorias</h1>
+	
+	<ul>
+	{% for categoria in categorias %}
+		<li><a href="{{ categoria.get_absolute_url }}">{{ categoria }}</a></li>
+	{% endfor %}
+	</ul>
+	
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block container %}
+
+	<h1>Login</h1>
+	
+	<form method="POST" action="">
+		<table>
+			{{ form.as_table }}
+		</table>
+		
+		<input type="submit" value="Entrar" />
+		<input type="hidden" name="next" value="{{ next }}" />
+	</form>
+	
+{% endblock %}

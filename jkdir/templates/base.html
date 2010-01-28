@@ -1,0 +1,50 @@
+<html>
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+	<div style="text-align: right;">
+		{% if user.is_authenticated %}
+			Bem-vindo <a href="{{ user.get_absolute_url }}">{{ user.username }}</a> | {% if user.is_staff %}<a href="/admin/">Administração</a> | {% endif %}<a href="/logout/">Logout</a>
+		{% else %}
+			<a href="/login/">Login</a>
+		{% endif %}
+		
+		<hr />
+	</div>
+	
+	<div style="width: 20%; float: left; border-right: solid grey 1px; height: 80%">
+		{% if user.is_authenticated %}
+			
+			<div style="text-align: center">
+				<b>Menu</b>
+			</div>
+		
+			<hr />
+		
+			<ul>
+				<li><a href="/">Página inicial</a></li>
+				<li><a href="/users/">Utilizadores</a></li>
+				<li><a href="/empresas/">Empresas</a></li>
+				<li><a href="/categorias/">Categorias</a></li>
+			</ul>
+		
+		{% endif %}
+		
+	</div>
+	
+	<div style="width: 75%; float: right">
+		{% block container %}
+		
+
+
+
+		
+		{% endblock %}
+	</div>
+	
+</body>
+
+</html>

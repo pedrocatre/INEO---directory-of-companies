@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Categoria - {{ categoria.nome }}{% endblock %}
+
+{% block container %}
+	
+	<h1>{{ categoria.nome }}</h1>
+	
+	<table border="1" cellspacing="0" cellpadding="3">
+		<tr>
+			<td><b>Descrição</b></td>
+			<td>{{ categoria.descricao }}</td>
+		</tr>
+	</table>
+	
+	<h3>Livros</h3>
+	
+	{% if livros %}
+		<ul>
+			{% for livro in livros %}
+			<li><a href="{{ livro.get_absolute_url }}">{{ livro }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		Não foram encontrados livros.
+	{% endif %}
+
+{% endblock %}

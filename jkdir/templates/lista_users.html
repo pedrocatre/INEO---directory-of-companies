@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Utilizadores{% endblock %}
+
+{% block container %}
+	
+	<h1>Utilizadores</h1>
+	
+	<ul>
+	{% for user in users %}
+		<li><a href="{{ user.get_absolute_url }}">{% firstof user.get_full_name user.username %}</a></li>
+	{% endfor %}
+	</ul>
+	
+{% endblock %}

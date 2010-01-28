@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Utilizador - {% firstof u.get_full_name u.username %}{% endblock %}
+
+{% block container %}
+	
+	<h1>{% firstof u.get_full_name u.username %}</h1>
+	
+	<table border="1" cellspacing="0" cellpadding="3">
+		<tr>
+			<td><b>Email</b></td>
+			<td>{{ u.email }}</td>
+		</tr>
+		<tr>
+			<td><b>Último Login</b></td>
+			<td>{{ u.last_login|date:"H:m:s d/m/Y" }}</td>
+		</tr>
+	</table>
+	
+	
+	<h3>Livros</h3>
+	
+	{% if livros %}
+		<ul>
+			{% for livro in livros %}
+			<li><a href="{{ livro.get_absolute_url }}">{{ livro }}</a></li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		Não foram encontrados livros.
+	{% endif %}
+
+{% endblock %}

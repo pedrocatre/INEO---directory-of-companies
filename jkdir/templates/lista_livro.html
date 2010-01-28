@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Livros{% endblock %}
+
+{% block container %}
+	
+	<h1>Livros</h1>
+	
+	<ul>
+	{% for livro in livros %}
+		<li><a href="{{ livro.get_absolute_url }}">{{ livro }}</a></li>
+	{% endfor %}
+	</ul>
+	
+{% endblock %}
