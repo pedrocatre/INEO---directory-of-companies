@@ -4,7 +4,7 @@
 	<title>{% block title %}{% endblock %}</title>
 </head>
 
-<body>
+<html>
 	<div style="text-align: right;">
 		{% if user.is_authenticated %}
 			Bem-vindo <a href="{{ user.get_absolute_url }}">{{ user.username }}</a> | {% if user.is_staff %}<a href="/admin/">Administração</a> | {% endif %}<a href="/logout/">Logout</a>

@@ -4,7 +4,7 @@
 from jkdir.models import Empresa
 from jkdir.forms import *
 from django.contrib.auth.models import User
-
+from django.contrib.auth.views import login
 from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render_to_response
@@ -20,9 +20,26 @@ def render(request,template,context={}):
 # Create your views here.
 
 def pagina_visitantes(request):
-	empresas=Empresa.objects.all();
+	empresas=Empresa.objects.all()
 	
 	return render(request, 'visitantes.html', {'empresas':empresas}) #view para ir buscar todas as empresas
+	
+def proteger_login(request, *args, **kwargs):
+	if request.method == 'POST':
+		usern=request.POST['username']
+		
+		emp= Empresa.objects.filter(dono__username=usern)
+		if len(emp) >0:
+			print emp[0].validado
+			if not emp[0].validado:
+				erro = 'A conta ainda não está validada.'
+				return render(request, 'erro.html', {'erro':erro})
+		else:
+			erro ='A empresa não existe.'
+			return render(request, 'erro.html', {'erro':erro})
+			
+		
+	return login(request, *args, **kwargs)
 
 @login_required
 def pagina_inicial(request):

@@ -25,7 +25,7 @@ class Empresa(models.Model):
 	telefone=models.CharField('telefone', max_length=50)
 	#categorias = models.ManyToManyField(Categoria, null=True, blank=True)
 	#membros = models.ManyToManyField(Membro, null=True, blank=True)
-	dono = models.ForeignKey(User, unique=True)
+	dono = models.ForeignKey(User, unique=True, null=True)
 	validado= models.BooleanField('validado', default= False)
 	
 	def __unicode__(self):

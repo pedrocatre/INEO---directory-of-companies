@@ -30,7 +30,7 @@ urlpatterns = patterns('',
 
     # Login
 	
-    (r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html', 'redirect_field_name':'/'}),
+    (r'^login/$', 'jkdir.views.proteger_login',{'template_name': 'login.html', 'redirect_field_name':'/'}),
     (r'^logout/$', 'django.contrib.auth.views.logout_then_login', {'login_url': '/login/?next=/'}),
 
     (r'^register/$', 'jkdir.views.register'),
