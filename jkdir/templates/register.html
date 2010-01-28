@@ -1,15 +1,15 @@
-﻿
+﻿{% extends "base.html" %}
 
-{% block title %}Create an account{% endblock %}
+{% block title %}{%if not editing %}Registar{%else%}Editar{%endif%}{% endblock %}
 
-{% block content %}
-      <h1>Create an account</h1>
+{% block container %}
+      <h1>{%if not editing %}Registar{%else%}Editar{%endif%}</h1>
       <form action="" method="post">
         <table>
 			{{ user_form.as_table }}
 			{{ emp_form.as_table }}
 		</table>
 
-        <input type="submit" value="Registar" />
+        <input type="submit" value="{%if not editing %}Registar{%else%}Editar{%endif%}" />
       </form>
 {% endblock %}

@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
         # Pagina inicial
-    (r'^$', 'jkdir.views.pagina_inicial'),
+    (r'^$', 'jkdir.views.change'),
 
 	# Pagina visitantes
     (r'^visitantes/$', 'jkdir.views.pagina_visitantes'),

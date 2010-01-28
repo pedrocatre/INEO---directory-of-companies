@@ -9,7 +9,10 @@ from django.contrib.auth.decorators import login_required
 
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
-
+from django import forms
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.contrib.auth.forms import UserCreationForm
 
 # Função que facilita o render das páginas
 
@@ -56,11 +59,31 @@ def pagina_inicial(request):
 def detalhe_empresa(request, empresa_id):
 	empresa = Empresa.objects.get(id=empresa_id)
 	return render(request, 'detalhe_empresa.html', {'empresa': empresa})
-	
+@login_required
 def change(request):
-	empresas=Empresa.objects.all();
+
+	emp=request.user.empresa_set.all()[0]
+	if request.method == 'POST':
+			user_form = UserEditForm(request.POST, request.FILES, instance = request.user)
+			emp_form = EmpresaForm(request.POST, request.FILES, instance = emp)
+			
+			if emp_form.is_valid():
+				emp = emp_form.save()
+				if user_form.is_valid():
+					user = user_form.save()
+					user.email=emp.email
+					user.save()
+				
+				
+				return HttpResponseRedirect("/")
+	else:
+		user_form = UserEditForm(instance = request.user)
 	
-	return render(request, 'lista_empresa.html', {'empresas':empresas}) #view para ir buscar todas as empresas
+		emp_form = EmpresaForm(instance = emp)
+			
+	return render(request, "register.html", {
+		'user_form' : user_form, 'emp_form' : emp_form, 'editing' : True})
+
 		
 	
 @login_required #meter a protecao pas paginas pa ir antes po login
@@ -69,10 +92,7 @@ def lista_empresa(request):
 	
 	return render(request, 'lista_empresa.html', {'empresas':empresas}) #view para ir buscar todas as empresas
 
-from django import forms
-from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
-from django.contrib.auth.forms import UserCreationForm
+
 
 def register(request):
 
@@ -84,6 +104,8 @@ def register(request):
 			emp = emp_form.save()
 			if user_form.is_valid():
 				user = user_form.save()
+				user.email=emp.email
+				user.save()
 				emp.dono=user
 				emp.save()
             
