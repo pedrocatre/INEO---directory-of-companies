@@ -26,7 +26,7 @@ class Empresa(models.Model):
 	#categorias = models.ManyToManyField(Categoria, null=True, blank=True)
 	#membros = models.ManyToManyField(Membro, null=True, blank=True)
 	dono = models.ForeignKey(User, unique=True)
-	null=False
+	validado= models.BooleanField('validado', default= False)
 	
 	def __unicode__(self):
 		return u'%s' % self.titulo

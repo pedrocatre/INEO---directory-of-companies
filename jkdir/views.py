@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from jkdir.models import Empresa
+from jkdir.forms import *
 from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
@@ -58,19 +59,23 @@ from django.contrib.auth.forms import UserCreationForm
 
 def register(request):
 
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            new_user = form.save()
-
-            # DUDE, aqui fazes cenas antes de gravar o user.
-            new_user.save()
+	if request.method == 'POST':
+		user_form = UserCreationForm(request.POST, request.FILES)
+		emp_form = EmpresaForm(request.POST, request.FILES)
+		
+		if emp_form.is_valid():
+			emp = emp_form.save()
+			if user_form.is_valid():
+				user = user_form.save()
+				emp.dono=user
+				emp.save()
             
-            return HttpResponseRedirect("/")
-    else:
-        form = UserCreationForm()
-
-    return render(request, "register.html", {
-        'form' : form
-    })
+            
+			return HttpResponseRedirect("/")
+	else:
+		user_form = UserCreationForm()
+		emp_form = EmpresaForm()
+		
+	return render(request, "register.html", {
+		'user_form' : user_form, 'emp_form' : emp_form
+	})

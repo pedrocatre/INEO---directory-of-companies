@@ -23,7 +23,7 @@ urlpatterns = patterns('',
 	(r'^empresas/(?P<empresa_id>\d+)/$', 'jkdir.views.detalhe_empresa'),
 	
     # Empresas
-    #(r'^empresas/$', 'jkdir.views.lista_empresa'),
+    (r'^empresas/$', 'jkdir.views.lista_empresa'),
 	
 	# Empresas
     (r'^change/$', 'jkdir.views.change'),

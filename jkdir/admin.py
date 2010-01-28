@@ -7,11 +7,11 @@ from jkdir.models import  Empresa#, Membro ,Categoria
 #admin.site.register(Categoria, CategoriaAdmin)
 
 class EmpresaAdmin(admin.ModelAdmin):
-	list_display = ('titulo', 'ceo', 'email',)
+	list_display = ('titulo', 'ceo', 'email', 'validado')
 	search_fields = ('titulo', 'descricao')
-	ordering = ('titulo',)
+	ordering = ('validado', 'titulo')
 	
-	list_editable = ('email',)
+	list_editable = ('email', 'validado')
 	
 admin.site.register(Empresa, EmpresaAdmin)
 
