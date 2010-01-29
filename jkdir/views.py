@@ -1,4 +1,3 @@
-# Create your views here.
 # -*- coding: utf-8 -*-
 
 from jkdir.models import Empresa
@@ -55,10 +54,10 @@ def pagina_inicial(request):
 	
 	return render(request, 'index.html', {'users':users})
 	
-@login_required
 def detalhe_empresa(request, empresa_id):
 	empresa = Empresa.objects.get(id=empresa_id)
 	return render(request, 'detalhe_empresa.html', {'empresa': empresa})
+	
 @login_required
 def change(request):
 
@@ -86,7 +85,6 @@ def change(request):
 
 		
 	
-@login_required #meter a protecao pas paginas pa ir antes po login
 def lista_empresa(request):
 	empresas=Empresa.objects.all();
 	

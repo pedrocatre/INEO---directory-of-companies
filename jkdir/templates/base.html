@@ -7,9 +7,9 @@
 <html>
 	<div style="text-align: right;">
 		{% if user.is_authenticated %}
-			Bem-vindo <a href="{{ user.get_absolute_url }}">{{ user.username }}</a> | {% if user.is_staff %}<a href="/admin/">Administração</a> | {% endif %}<a href="/logout/">Logout</a>
+			Bem-vindo <a href="{{ user.get_absolute_url }}">{{ user.username }}</a> | <a href="/account/password_change/">Alterar Password</a> | <a href="/account/change/">Editar dados</a> | <a href="/logout/">Logout</a>
 		{% else %}
-			<a href="/login/">Login</a>
+			<a href="/">Lista de Empresas</a> | <a href="/login/">Login</a>
 		{% endif %}
 		
 		<hr />
@@ -25,10 +25,8 @@
 			<hr />
 		
 			<ul>
-				<li><a href="/">Página inicial</a></li>
 				<li><a href="/users/">Utilizadores</a></li>
 				<li><a href="/empresas/">Empresas</a></li>
-				<li><a href="/categorias/">Categorias</a></li>
 			</ul>
 		
 		{% endif %}

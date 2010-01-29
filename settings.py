@@ -89,4 +89,4 @@ INSTALLED_APPS = (
 	'jkdir',
 )
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/account/'
